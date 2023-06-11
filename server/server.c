@@ -63,9 +63,4 @@ int main() {
 		msg = (char*)buffer;
 		printf("%s\n", msg);
 	}
-
-	// closing the connected socket
-	//close(new_socket);
-
-	return 0;
 }
