@@ -8,11 +8,10 @@
 #define PORT 8080
 #define SERVER_ADDRESS "127.0.0.1"
 
-int main(int argc, char const* argv[]) {
+int main() {
 	int status, client_fd;
 	struct sockaddr_in server_address;
 	char* msg = "Hello";
-	char buffer[1024] = { 0 };
 
 	client_fd =  socket(AF_INET, SOCK_STREAM, 0);
 
