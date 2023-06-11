@@ -9,7 +9,7 @@
 #define PORT 8080
 
 int main(int argc, char const* argv[]) {
-	int server_fd, new_socket, valread;
+	int server_fd, new_socket;
 	struct sockaddr_in address;
 	int opt = 1;
 	int addrlen = sizeof(address);
@@ -57,7 +57,7 @@ int main(int argc, char const* argv[]) {
     	}
 
 		// Read buffer
-		valread = read(new_socket, buffer, 1024);
+		read(new_socket, buffer, 1024);
 		char* msg = (char*)buffer;
 		printf("%s\n", msg);
 	}
