@@ -18,16 +18,11 @@ static struct sockaddr_in setup_address() {
 	return address;
 }
 
-static char* read_buffer(int new_socket, int buffer[1024]) {
-	/* Read the buffer */
-	read(new_socket, buffer, 1024);
-	return (char*)buffer;
-}
-
 int main() {
 	int server_fd, new_socket;
 	struct sockaddr_in address;
 	int opt = 1;
+	ssize_t read_status;
 	socklen_t addrlen = sizeof(address);
 	int buf[1024] = { 0 };
 	char* msg;
@@ -70,8 +65,16 @@ int main() {
         	exit(EXIT_FAILURE);
     	}
 
-		msg = read_buffer(new_socket, buf);
+		// Read the buffer
+		read_status = read(new_socket, buf, 1024);
 
-		printf("%s\n", msg);
+		if (read_status) {
+			printf("Reading the message failed \n");
+			return -1;
+		}
+		else {
+			msg = (char*)buf;
+			printf("%s\n", msg);
+		}
 	}
 }

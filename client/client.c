@@ -27,7 +27,8 @@ static int convert_address_to_binary(struct sockaddr_in server_address) {
 }
 
 int main() {
-	int status, client_fd;
+	int connection_status, client_fd;
+	ssize_t send_status;
 	struct sockaddr_in server_address;
 	char* msg = "Hello";
 
@@ -44,16 +45,23 @@ int main() {
 	convert_address_to_binary(server_address);
 
 	// Open connection to socket
-	status = connect(client_fd, (struct sockaddr*)&server_address, sizeof(server_address));
+	connection_status = connect(client_fd, (struct sockaddr*)&server_address, sizeof(server_address));
 
-	if (status == -1) {
+	if (connection_status == -1) {
 		printf("Connection Failed \n");
 		return -1;
 	}
 
 	// Send a message to socket
-	send(client_fd, msg, strlen(msg), 0);
-	printf("Sent a message\n");
+	send_status = send(client_fd, msg, strlen(msg), 0);
+
+	if (send_status == -1) {
+		printf("Sending a message failed \n");
+		return -1;
+	}
+	else {
+		printf("Sent a message\n");
+	}
 
 	// close the connected socket
 	close(client_fd);
