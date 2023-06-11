@@ -9,7 +9,7 @@
 
 int main(int argc, char const* argv[]) {
 	int status, client_fd;
-	struct sockaddr_in serv_addr;
+	struct sockaddr_in server_address;
 	char* hello = "Hello";
 	char buffer[1024] = { 0 };
 
@@ -20,16 +20,16 @@ int main(int argc, char const* argv[]) {
 		return -1;
 	}
 
-	serv_addr.sin_family = AF_INET;
-	serv_addr.sin_port = htons(PORT);
+	server_address.sin_family = AF_INET;
+	server_address.sin_port = htons(PORT);
 
 	// Convert IPv4 and IPv6 addresses from text to binary form
-	if (inet_pton(AF_INET, "127.0.0.1", &serv_addr.sin_addr) <= 0) {
+	if (inet_pton(AF_INET, "127.0.0.1", &server_address.sin_addr) <= 0) {
 		printf("Invalid address: Address not supported \n");
 		return -1;
 	}
 
-	status = connect(client_fd, (struct sockaddr*)&serv_addr, sizeof(serv_addr));
+	status = connect(client_fd, (struct sockaddr*)&server_address, sizeof(server_address));
 
 	if (status == -1) {
 		printf("Connection Failed \n");
