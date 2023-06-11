@@ -70,10 +70,6 @@ int main() {
         	exit(EXIT_FAILURE);
     	}
 
-		// Read the buffer
-		//read(new_socket, buf, 1024);
-		//msg = (char*)buf;
-
 		msg = read_buffer(new_socket, buf);
 
 		printf("%s\n", msg);
