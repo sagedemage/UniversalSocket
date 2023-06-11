@@ -15,6 +15,7 @@ int main() {
 	int opt = 1;
 	socklen_t addrlen = sizeof(address);
 	int buffer[1024] = { 0 };
+	char* msg;
 
 	// Setup Address
 	address.sin_family = AF_INET;
@@ -59,7 +60,7 @@ int main() {
 
 		// Read buffer
 		read(new_socket, buffer, 1024);
-		char* msg = (char*)buffer;
+		msg = (char*)buffer;
 		printf("%s\n", msg);
 	}
 
