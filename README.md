@@ -1,4 +1,3 @@
-# UniversalSocket
-
-## To Do List
-1. Make the server run forever (using while loop).
+# Universal Socket
+The idea for this project is for a PC computer to communicate with a raspberry pi on the same network.
+For my case, that would be my home network.
