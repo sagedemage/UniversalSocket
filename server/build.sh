@@ -1,3 +1,4 @@
 #!/bin/sh
 
-gcc server.c -o bin/server
+cmake --build build
+
