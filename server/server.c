@@ -68,7 +68,7 @@ int main() {
 		// Read the buffer
 		read_status = read(new_socket, buf, 1024);
 
-		if (read_status) {
+		if (read_status == -1) {
 			printf("Reading the message failed \n");
 			return -1;
 		}
