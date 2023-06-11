@@ -47,19 +47,20 @@ int main(int argc, char const* argv[]) {
 		exit(EXIT_FAILURE);
 	}
 
+	while(1) {
+		// ACCEPT
+		new_socket = accept(server_fd, (struct sockaddr *)&address, &addrlen);
 
-	// ACCEPT
-	new_socket = accept(server_fd, (struct sockaddr *)&address, &addrlen);
+ 		if (new_socket == -1) {
+        	perror("accept");
+        	exit(EXIT_FAILURE);
+    	}
 
- 	if (new_socket == -1) {
-        perror("accept");
-        exit(EXIT_FAILURE);
-    }
-
-	// Read buffer
-	valread = read(new_socket, buffer, 1024);
-	char* msg = (char*)buffer;
-	printf("%s\n", msg);
+		// Read buffer
+		valread = read(new_socket, buffer, 1024);
+		char* msg = (char*)buffer;
+		printf("%s\n", msg);
+	}
 
 	// closing the connected socket
 	close(new_socket);
