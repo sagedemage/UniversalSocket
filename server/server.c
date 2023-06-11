@@ -9,11 +9,11 @@
 #include <stdbool.h>
 #define PORT 8080
 
-int main(int argc, char const* argv[]) {
+int main() {
 	int server_fd, new_socket;
 	struct sockaddr_in address;
 	int opt = 1;
-	int addrlen = sizeof(address);
+	socklen_t addrlen = sizeof(address);
 	int buffer[1024] = { 0 };
 
 	// Setup Address
@@ -64,7 +64,7 @@ int main(int argc, char const* argv[]) {
 	}
 
 	// closing the connected socket
-	close(new_socket);
+	//close(new_socket);
 
 	return 0;
 }
