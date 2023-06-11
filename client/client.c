@@ -6,6 +6,7 @@
 #include <sys/socket.h>
 #include <unistd.h>
 #define PORT 8080
+#define SERVER_ADDRESS "127.0.0.1"
 
 int main(int argc, char const* argv[]) {
 	int status, client_fd;
@@ -24,7 +25,7 @@ int main(int argc, char const* argv[]) {
 	server_address.sin_port = htons(PORT);
 
 	// Convert IPv4 and IPv6 addresses from text to binary form
-	if (inet_pton(AF_INET, "127.0.0.1", &server_address.sin_addr) <= 0) {
+	if (inet_pton(AF_INET, SERVER_ADDRESS, &server_address.sin_addr) <= 0) {
 		printf("Invalid address: Address not supported \n");
 		return -1;
 	}
