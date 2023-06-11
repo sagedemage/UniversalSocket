@@ -18,7 +18,9 @@ int main(int argc, char const* argv[]) {
 
 	// Creating socket file descriptor
 	// SOCKET
-	if ((server_fd = socket(AF_INET, SOCK_STREAM, 0)) == -1) {
+	server_fd = socket(AF_INET, SOCK_STREAM, 0);
+
+	if (server_fd == -1) {
 		perror("socket failed");
 		exit(EXIT_FAILURE);
 	}

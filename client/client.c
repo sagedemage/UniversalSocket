@@ -8,12 +8,14 @@
 #define PORT 8080
 
 int main(int argc, char const* argv[]) {
-	int status, valread, client_fd;
+	int status, client_fd;
 	struct sockaddr_in serv_addr;
 	char* hello = "Hello";
 	char buffer[1024] = { 0 };
 
-	if ((client_fd =  socket(AF_INET, SOCK_STREAM, 0)) == -1) {
+	client_fd =  socket(AF_INET, SOCK_STREAM, 0);
+
+	if (client_fd == -1) {
 		printf("Socket creation error \n");
 		return -1;
 	}
