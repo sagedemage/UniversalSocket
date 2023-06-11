@@ -10,7 +10,7 @@
 int main(int argc, char const* argv[]) {
 	int status, client_fd;
 	struct sockaddr_in server_address;
-	char* hello = "Hello";
+	char* msg = "Hello";
 	char buffer[1024] = { 0 };
 
 	client_fd =  socket(AF_INET, SOCK_STREAM, 0);
@@ -35,7 +35,7 @@ int main(int argc, char const* argv[]) {
 		printf("Connection Failed \n");
 		return -1;
 	}
-	send(client_fd, hello, strlen(hello), 0);
+	send(client_fd, msg, strlen(msg), 0);
 	printf("Sent a message\n");
 
 	// closing the connected socket

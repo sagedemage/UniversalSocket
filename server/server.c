@@ -14,7 +14,6 @@ int main(int argc, char const* argv[]) {
 	int opt = 1;
 	int addrlen = sizeof(address);
 	int buffer[1024] = { 0 };
-	char* hello = "Hello from server";
 
 	// Setup Address
 	address.sin_family = AF_INET;
