@@ -6,6 +6,7 @@
 #include <string.h>
 #include <sys/socket.h>
 #include <unistd.h>
+#include <stdbool.h>
 #define PORT 8080
 
 int main(int argc, char const* argv[]) {
@@ -47,7 +48,7 @@ int main(int argc, char const* argv[]) {
 		exit(EXIT_FAILURE);
 	}
 
-	while(1) {
+	while(true) {
 		// ACCEPT
 		new_socket = accept(server_fd, (struct sockaddr *)&address, &addrlen);
 
