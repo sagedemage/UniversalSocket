@@ -31,7 +31,7 @@ int main(int argc, char const* argv[]) {
 	}
 
 	// Forcefully attaching socket
-	if (setsockopt(server_fd, SOL_SOCKET, SO_REUSEADDR, &opt, sizeof(opt))) {
+	if (setsockopt(server_fd, SOL_SOCKET, SO_REUSEADDR, &opt, sizeof(opt)) == -1) {
 		perror("setsockopt");
 		exit(EXIT_FAILURE);
 	}
