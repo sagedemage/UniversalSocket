@@ -13,7 +13,7 @@ int main(int argc, char const* argv[]) {
 	char* hello = "Hello";
 	char buffer[1024] = { 0 };
 
-	if ((client_fd =  socket(AF_INET, SOCK_STREAM, 0)) < 0) {
+	if ((client_fd =  socket(AF_INET, SOCK_STREAM, 0)) == -1) {
 		printf("Socket creation error \n");
 		return -1;
 	}
@@ -27,7 +27,9 @@ int main(int argc, char const* argv[]) {
 		return -1;
 	}
 
-	if ((status = connect(client_fd, (struct sockaddr*)&serv_addr, sizeof(serv_addr))) < 0) {
+	status = connect(client_fd, (struct sockaddr*)&serv_addr, sizeof(serv_addr));
+
+	if (status == -1) {
 		printf("Connection Failed \n");
 		return -1;
 	}

@@ -18,7 +18,7 @@ int main(int argc, char const* argv[]) {
 
 	// Creating socket file descriptor
 	// SOCKET
-	if ((server_fd = socket(AF_INET, SOCK_STREAM, 0)) < 0) {
+	if ((server_fd = socket(AF_INET, SOCK_STREAM, 0)) == -1) {
 		perror("socket failed");
 		exit(EXIT_FAILURE);
 	}
@@ -36,21 +36,22 @@ int main(int argc, char const* argv[]) {
 	// Forcefully attaching socket to the port 8080
 	
 	// BIND
-	if (bind(server_fd, (struct sockaddr*)&address, sizeof(address)) < 0) {
+	if (bind(server_fd, (struct sockaddr*)&address, sizeof(address)) == -1) {
 		perror("bind failed");
 		exit(EXIT_FAILURE);
 	}
 
 	// LISTEN
-	if (listen(server_fd, 3) < 0) {
+	if (listen(server_fd, 3) == -1) {
 		perror("listen");
 		exit(EXIT_FAILURE);
 	}
 
+
 	// ACCEPT
 	new_socket = accept(server_fd, (struct sockaddr *)&address, &addrlen);
 
- 	if (new_socket < 0) {
+ 	if (new_socket == -1) {
         perror("accept");
         exit(EXIT_FAILURE);
     }
