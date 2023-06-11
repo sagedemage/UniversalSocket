@@ -6,6 +6,12 @@
 #include <sys/socket.h>
 #include <unistd.h>
 #define PORT 8080
+
+/*	
+* The server address can be changed 
+* - use 127.0.0.1 if you are testing on the loopback address
+* - use server's external address if you are dealing with an external server
+*/
 #define SERVER_ADDRESS "127.0.0.1"
 
 static struct sockaddr_in setup_address() {
@@ -32,7 +38,7 @@ int main() {
 	struct sockaddr_in server_address;
 	char* msg = "Hello";
 
-	// Create socket
+	// Create the socket
 	client_fd =  socket(AF_INET, SOCK_STREAM, 0);
 
 	if (client_fd == -1) {
