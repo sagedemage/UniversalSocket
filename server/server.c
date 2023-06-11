@@ -13,7 +13,7 @@ int main(int argc, char const* argv[]) {
 	struct sockaddr_in address;
 	int opt = 1;
 	int addrlen = sizeof(address);
-	const buffer[1024] = { 0 };
+	int buffer[1024] = { 0 };
 	char* hello = "Hello from server";
 
 	// Creating socket file descriptor
@@ -48,20 +48,23 @@ int main(int argc, char const* argv[]) {
 	}
 
 	// ACCEPT
- 	if ((new_socket = accept(server_fd, (struct sockaddr*)&address, (socklen_t*)&addrlen)) < 0) {
-        	perror("accept");
-        	exit(EXIT_FAILURE);
-    	}
+	new_socket = accept(server_fd, (struct sockaddr *)&address, &addrlen);
+
+ 	if (new_socket < 0) {
+        perror("accept");
+        exit(EXIT_FAILURE);
+    }
 
 	// Read buffer
 	valread = read(new_socket, buffer, 1024);
-	printf("%s\n", buffer);
+	char* msg = (char*)buffer;
+	printf("%s\n", msg);
 
 	// closing the connected socket
-	close(new_socket);
+	//close(new_socket);
 
 	// closing the listening socket
-	shutdown(server_fd, SHUT_RDWR);
+	//shutdown(server_fd, SHUT_RDWR);
 
 	return 0;
 }
