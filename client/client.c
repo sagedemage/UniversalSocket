@@ -16,6 +16,16 @@ static struct sockaddr_in setup_address() {
 	return server_address;
 }
 
+static int convert_address_to_binary(struct sockaddr_in server_address) {
+	/* Convert IPv4 or IPv6 network address to binary */
+	// It performs the conversion from text to binary form
+	if (inet_pton(AF_INET, SERVER_ADDRESS, &server_address.sin_addr) <= 0) {
+		printf("Invalid address: Address not supported \n");
+		return -1;
+	}
+	return 0;
+}
+
 int main() {
 	int status, client_fd;
 	struct sockaddr_in server_address;
@@ -31,11 +41,7 @@ int main() {
 
 	server_address = setup_address();
 
-	// Convert IPv4 and IPv6 addresses from text to binary form
-	if (inet_pton(AF_INET, SERVER_ADDRESS, &server_address.sin_addr) <= 0) {
-		printf("Invalid address: Address not supported \n");
-		return -1;
-	}
+	convert_address_to_binary(server_address);
 
 	// Open connection to socket
 	status = connect(client_fd, (struct sockaddr*)&server_address, sizeof(server_address));
