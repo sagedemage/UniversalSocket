@@ -21,6 +21,7 @@ int main() {
 	struct sockaddr_in server_address;
 	char* msg = "Hello";
 
+	// Create socket
 	client_fd =  socket(AF_INET, SOCK_STREAM, 0);
 
 	if (client_fd == -1) {
