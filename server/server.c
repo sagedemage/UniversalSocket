@@ -9,8 +9,9 @@
 #include <stdbool.h>
 #define PORT 8080
 
-static struct sockaddr_in setup_address(struct sockaddr_in address) {
+static struct sockaddr_in setup_address() {
 	/* Setup Address */
+	struct sockaddr_in address;
 	address.sin_family = AF_INET;
 	address.sin_addr.s_addr = INADDR_ANY;
 	address.sin_port = htons(PORT);
@@ -32,7 +33,7 @@ int main() {
 	char* msg;
 
 	// Setup Address
-	address = setup_address(address);
+	address = setup_address();
 
 	// Create socket
 	server_fd = socket(AF_INET, SOCK_STREAM, 0);
