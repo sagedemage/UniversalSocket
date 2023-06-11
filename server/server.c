@@ -61,10 +61,7 @@ int main(int argc, char const* argv[]) {
 	printf("%s\n", msg);
 
 	// closing the connected socket
-	//close(new_socket);
-
-	// closing the listening socket
-	//shutdown(server_fd, SHUT_RDWR);
+	close(new_socket);
 
 	return 0;
 }
