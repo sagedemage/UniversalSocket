@@ -12,7 +12,10 @@
 * - use 127.0.0.1 if you are testing on the loopback address
 * - use server's external address if you are dealing with an external server
 */
-#define SERVER_ADDRESS "127.0.0.1"
+//#define SERVER_ADDRESS "127.0.0.1"
+
+#define SERVER_ADDRESS "192.168.1.72"
+
 
 static struct sockaddr_in setup_address() {
 	/* Setup Address */
@@ -22,14 +25,14 @@ static struct sockaddr_in setup_address() {
 	return server_address;
 }
 
-static int convert_address_to_binary(struct sockaddr_in server_address) {
+static struct sockaddr_in convert_address_to_binary(struct sockaddr_in server_address) {
 	/* Convert IPv4 or IPv6 network address to binary */
 	// It performs the conversion from text to binary form
 	if (inet_pton(AF_INET, SERVER_ADDRESS, &server_address.sin_addr) <= 0) {
 		printf("Invalid address: Address not supported \n");
-		return -1;
+		exit(0);
 	}
-	return 0;
+	return server_address;
 }
 
 int main() {
@@ -48,7 +51,7 @@ int main() {
 
 	server_address = setup_address();
 
-	convert_address_to_binary(server_address);
+	server_address = convert_address_to_binary(server_address);
 
 	// Open connection to socket
 	connection_status = connect(client_fd, (struct sockaddr*)&server_address, sizeof(server_address));
