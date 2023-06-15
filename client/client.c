@@ -57,7 +57,8 @@ int main() {
 	connection_status = connect(client_fd, (struct sockaddr*)&server_address, sizeof(server_address));
 
 	if (connection_status == -1) {
-		printf("Connection Failed \n");
+		char msg[] = "Connection Failed!";
+		printf("\033[31m%s\033[0m\n", msg);
 		return -1;
 	}
 
@@ -65,11 +66,12 @@ int main() {
 	send_status = send(client_fd, msg, strlen(msg), 0);
 
 	if (send_status == -1) {
-		printf("Sending a message failed \n");
+		printf("Sending a message failed\n");
 		return -1;
 	}
 	else {
-		printf("Sent a message\n");
+		char msg[] = "Sent a message to the server!";
+		printf("\033[32m%s\033[0m\n", msg);
 	}
 
 	// close the connected socket

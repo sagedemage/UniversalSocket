@@ -56,6 +56,11 @@ int main() {
 		exit(EXIT_FAILURE);
 	}
 
+	char msg1[] = "Server is running!";
+	char msg2[] = "------------------";
+	printf("\033[32m%s\033[0m\n", msg1);
+	printf("\033[32m%s\033[0m\n", msg2);
+
 	while(true) {
 		// Accept for connections
 		new_socket = accept(server_fd, (struct sockaddr *)&address, &addrlen);
