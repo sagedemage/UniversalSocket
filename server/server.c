@@ -76,5 +76,8 @@ int main() {
 			msg = (char*)buf;
 			printf("%s\n", msg);
 		}
+
+		// close the connected socket
+		close(new_socket);
 	}
 }
